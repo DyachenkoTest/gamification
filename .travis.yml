@@ -23,3 +23,7 @@ script:
   - ./gradlew test
   - ./gradlew test --tests "juja.microservices.integration.*"
   - ./gradlew test --tests "juja.microservices.acceptance.*"
+
+after_success:
+     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+     docker push vadimdyachenko/testrepository;

@@ -25,6 +25,8 @@ script:
   - ./gradlew test --tests "juja.microservices.acceptance.*"
 
 after_success:
-     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-     docker build -f Dockerfile -t Gamification:latest
+  if [ "$TRAVIS_BRANCH" != "mas" ]; then
+     docker build -f Dockerfile -t Gamification:latest;
+     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
      docker push vadimdyachenko/testrepository;
+  fi

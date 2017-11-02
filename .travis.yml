@@ -22,6 +22,7 @@ script:
   - ./gradlew test --tests "juja.microservices.acceptance.*"
 
 after_success:
-  - docker build -f Dockerfile -t gamification:latest .
+  - ./gradlew clean build buildDocker
+  #- docker build -f Dockerfile -t gamification:latest .
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker push vadimdyachenko/testrepository

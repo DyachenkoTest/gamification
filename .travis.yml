@@ -26,4 +26,4 @@ after_success:
   - docker images
   - docker tag juja/gamification $DOCKER_USERNAME/gamification
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - docker push juja/gamification
+  - docker push $DOCKER_USERNAME/gamification

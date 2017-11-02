@@ -22,8 +22,10 @@ script:
   #- ./gradlew test --tests "juja.microservices.acceptance.*"
 
 after_success:
-  - ./gradlew buildDocker
-  - docker images
-  - docker tag juja/gamification $DOCKER_USERNAME/gamification
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - docker push $DOCKER_USERNAME/gamification
+  - if ["TRAVIS_EVENT_TYPE" == "pull_request" ]; then
+   ./gradlew buildDocker;
+  #- docker images
+   docker tag juja/gamification $DOCKER_USERNAME/gamification;
+   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD;
+   docker push $DOCKER_USERNAME/gamification;
+   fi

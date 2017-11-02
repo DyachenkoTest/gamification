@@ -1,4 +1,4 @@
-language: java
+#language: java
 jdk:
   - oraclejdk8
 sudo: required
@@ -18,12 +18,13 @@ before_script:
 
 script:
   - ./gradlew test
-  - ./gradlew test --tests "juja.microservices.integration.*"
-  - ./gradlew test --tests "juja.microservices.acceptance.*"
+  #- ./gradlew test --tests "juja.microservices.integration.*"
+  #- ./gradlew test --tests "juja.microservices.acceptance.*"
 
 after_success:
-  - ./gradlew clean build buildDocker
-  #- docker build -f Dockerfile -t gamification:latest .
+ # - ./gradlew clean build buildDocker
+  - docker build -f Dockerfile -t gamification:latest .
   - docker images
+  - docker
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker push vadimdyachenko/testrepository

@@ -27,7 +27,7 @@ after_success:
 
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
       ./gradlew clean build buildDocker;
-      docker tag juja/gamification $DOCKER_USERNAME/gamification;
+      docker tag juja/gamification $DOCKER_USERNAME/gamification:$TAG;
       docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD;
       docker push $DOCKER_USERNAME/gamification;
     fi

@@ -20,9 +20,9 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" ]; then
-        TAG="stable"
+        TAG="stable";
     else
-        TAG="$TRAVIS_BRANCH"
+        TAG="$TRAVIS_BRANCH";
     fi
 
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
